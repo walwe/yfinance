@@ -315,7 +315,7 @@ class TickerBase():
 
         # sustainability
         d = {}
-        if isinstance(data.get('esgScores'), dict):
+        if isinstance(data.get('esgScores'), dict) and 'err' not in data['esgScores']:
             for item in data['esgScores']:
                 if not isinstance(data['esgScores'][item], (dict, list)):
                     d[item] = data['esgScores'][item]
@@ -332,7 +332,7 @@ class TickerBase():
         # info (be nice to python 2)
         self._info = {}
         items = ['summaryProfile', 'summaryDetail', 'quoteType',
-                 'defaultKeyStatistics', 'assetProfile', 'summaryDetail']
+                 'defaultKeyStatistics', 'assetProfile', 'summaryDetail', 'price']
         for item in items:
             if isinstance(data.get(item), dict):
                 self._info.update(data[item])
